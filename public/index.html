@@ -37,7 +37,7 @@
 
       document.getElementById('result').textContent = 'Running…';
       try {
-        const resp = await fetch('/scrape', {
+        const resp = await fetch('/api/scrape', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ seeds, level })
