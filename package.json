@@ -1,0 +1,28 @@
+{
+  "name": "company-scraper",
+  "version": "1.0.0",
+  "description": "Minimal + Level 2 company data scraper",
+  "main": "index.js",
+  "bin": {
+    "company-scraper": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js --seeds seeds.txt --level 2 --format json"
+  },
+  "keywords": [
+    "scraper",
+    "company",
+    "nodejs",
+    "cheerio"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "body-parser": "^2.2.0",
+    "cheerio": "^1.0.0-rc.12",
+    "commander": "^11.0.0",
+    "express": "^5.1.0",
+    "json2csv": "^5.0.7"
+  }
+}

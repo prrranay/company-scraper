@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Scraper</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 2em auto; }
+    textarea { width: 100%; height: 100px; }
+    select, button { margin-top: 0.5em; }
+    pre { background: #f4f4f4; padding: 1em; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>Company Scraper (Level 1 & 2)</h1>
+  <form id="scrapeForm">
+    <label>Seed URLs (one per line):</label><br>
+    <textarea id="seeds" required>https://example.com</textarea><br>
+    <label>Extraction Level:</label>
+    <select id="level">
+      <option value="1">1 (Basic)</option>
+      <option value="2">2 (Extended)</option>
+    </select><br>
+    <button type="submit">Run Scraper</button>
+  </form>
+
+  <h2>Output</h2>
+  <pre id="result">––– waiting for run –––</pre>
+
+  <script>
+    document.getElementById('scrapeForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const seeds = document.getElementById('seeds').value
+        .split('\n')
+        .map(l => l.trim())
+        .filter(Boolean);
+      const level = document.getElementById('level').value;
+
+      document.getElementById('result').textContent = 'Running…';
+      try {
+        const resp = await fetch('/scrape', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ seeds, level })
+        });
+        const data = await resp.json();
+        document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById('result').textContent = 'Error: ' + err;
+      }
+    });
+  </script>
+</body>
+</html>
