@@ -7,7 +7,7 @@
     "company-scraper": "./index.js"
   },
   "scripts": {
-    "start": "node index.js --seeds seeds.txt --level 2 --format json"
+    "start": "vercel dev"
   },
   "keywords": [
     "scraper",
